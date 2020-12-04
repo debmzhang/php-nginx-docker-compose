@@ -16,3 +16,7 @@
     * 映射容器的 tmp
 * www
     * 放置您的项目源码
+
+##使用
+* 安装 [docker](https://docs.docker.com/get-docker/) 与 [docker-compose](https://yeasy.gitbook.io/docker_practice/compose/install)
+* sudo docker-compose up -d
