@@ -1,0 +1,31 @@
+version: "3"
+
+services:
+    php:
+        image: debmzhang/php5.6.40:lnmp-nerd-v1
+        container_name: php
+        ports:
+            - "9000"
+        volumes:
+            - ./logs/php:/usr/local/php/var/log
+            - ./etc/php-fpm.conf:/usr/local/php/etc/php-fpm.conf
+            - ./www:/www
+        networks:
+            - net-web
+    nginx:
+        image: debmzhang/nginx:lnmp-nerd-v1
+        container_name: nginx
+        depends_on:
+            - php
+        ports:
+            - "8989:80"
+        volumes:
+            - ./www:/www
+            - ./conf.d:/etc/nginx/conf.d
+            - ./logs/nginx:/var/log/nginx
+            - ./tmp:/tmp
+        networks:
+            - net-web
+
+networks:
+    net-web:
